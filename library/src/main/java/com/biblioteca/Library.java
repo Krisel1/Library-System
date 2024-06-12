@@ -21,7 +21,7 @@ public class Library {
     private static void fillLibrary() {
         int arrayPosition = 0;
         try {
-            PrintWriter writer = new PrintWriter("ToDoList.txt");
+            PrintWriter writer = new PrintWriter("Date_of_books.txt");
             while (array.size() > arrayPosition) {
                 writer.println(array.get(arrayPosition));
                 arrayPosition++;
@@ -35,7 +35,7 @@ public class Library {
     private static void fillArray() {
         array.clear();
         try {
-            FileReader read = new FileReader("ToDoList.txt");
+            FileReader read = new FileReader("Date_of_books.txt");
             Scanner arrayAdd = new Scanner(read);
             while (arrayAdd.hasNextLine()) {
                 array.add(arrayAdd.nextLine());
@@ -47,7 +47,7 @@ public class Library {
 
     private static void clearLibrary() {
         try {
-            PrintWriter writer = new PrintWriter("ToDoList.txt");
+            PrintWriter writer = new PrintWriter("Date_of_books.txt");
             writer.print("");
             writer.close();
         } catch (Exception error) {
