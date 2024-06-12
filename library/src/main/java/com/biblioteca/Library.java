@@ -12,7 +12,7 @@ public class Library {
 
     private static void createLibrary() {
         try {
-            FileWriter paper = new FileWriter("Date_of_books", true);
+            FileWriter paper = new FileWriter("Date_of_books.txt", true);
         } catch (Exception error) {
             error.printStackTrace();
         }
