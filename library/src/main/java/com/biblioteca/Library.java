@@ -1,44 +1,33 @@
 package com.biblioteca;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Library {
-    public static ArrayList<String> array = new ArrayList<>();
+    public static ArrayList<String> arrayLibrary = new ArrayList<>();
+
+    private static boolean isExistsLibrary() {
+        File libraryFile = new File("Date_of_books.txt");
+        return libraryFile.exists();
+    }
 
     private static void createLibrary() {
         try {
-            FileWriter paper = new FileWriter("Date_of_books.txt", true);
+            FileWriter paper = new FileWriter("Date_of_books.txt");
+            paper.close();
         } catch (Exception error) {
             error.printStackTrace();
         }
     }
 
-    private static void fillLibrary() {
-        int arrayPosition = 0;
-        try {
-            PrintWriter writer = new PrintWriter("Date_of_books.txt");
-            while (array.size() > arrayPosition) {
-                writer.println(array.get(arrayPosition));
-                arrayPosition++;
-            }
-            writer.close();
-        } catch(Exception error){
-            error.printStackTrace();
-        }
-    }
-
-    private static void fillArray() {
-        array.clear();
+    private static void addArray() {
+        arrayLibrary.clear();
         try {
             FileReader read = new FileReader("Date_of_books.txt");
             Scanner arrayAdd = new Scanner(read);
             while (arrayAdd.hasNextLine()) {
-                array.add(arrayAdd.nextLine());
+                arrayLibrary.add(arrayAdd.nextLine());
             }
         } catch (FileNotFoundException Exception) {
             Exception.printStackTrace();
@@ -55,19 +44,30 @@ public class Library {
         }
     }
 
-    public static void callCreateLibrary() {
-        createLibrary();
+    private static void addLibrary() {
+        int arrayPosition = 0;
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter("Date_of_books.txt", true));
+            while (arrayLibrary.size() > arrayPosition) {
+                writer.println(arrayLibrary.get(arrayPosition));
+                arrayPosition++;
+            }
+            writer.close();
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
     }
 
-    public static void callFillLibrary() {
-        fillLibrary();
+
+    public static void initialize() {
+        if (!isExistsLibrary()) {
+            createLibrary();
+        }
+        addArray();
     }
 
-    public static void callFillArray() {
-        fillArray();
-    }
-
-    public static void callClearLibrary() {
+    public static void saveChanges() {
         clearLibrary();
+        addLibrary();
     }
 }

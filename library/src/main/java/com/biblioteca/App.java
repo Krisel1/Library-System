@@ -1,13 +1,16 @@
 package com.biblioteca;
 
-/**
- * Hello world!
- */
+
+import java.util.Scanner;
+
 public final class App {
     private App() {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+    User.callAddBook();
+    User.callSeeAllBooks();
+    User.callAllAutors();
+    User.callDelete();
     }
 }
