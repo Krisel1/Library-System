@@ -6,12 +6,13 @@ public class Admin {
     private static void addBook() {
         Library.initialize();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Write your name of book");
+        System.out.println("Wellcome to Our Library \n Write the book's name you want");
         String input = scanner.nextLine();
         Library.arrayLibrary.add(input);
-        System.out.println("Write your autor");
+        System.out.println("Write autor's name");
         input = scanner.nextLine();
         Library.arrayLibrary.add(input);
+        Library.arrayLibrary.add("disponible");
         Library.saveChanges();
     }
     public static void callAddBook() {
@@ -30,5 +31,17 @@ public class Admin {
     }
     public static void callDelete() {
         delete();
+    }
+    private static void seeAllAutors() {
+        Library.initialize();
+        System.out.println("Here all autors");
+        int countText =1;
+        for (int arrayPosition = 1; arrayPosition < Library.arrayLibrary.size(); arrayPosition +=2) {
+            System.out.println(countText + ") " + Library.arrayLibrary.get(arrayPosition));
+            countText++;
+        }
+    }
+    public static void callAllAutors() {
+        seeAllAutors();
     }
 }
