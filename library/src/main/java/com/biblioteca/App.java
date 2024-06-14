@@ -8,9 +8,7 @@ public final class App {
     }
 
     public static void main(String[] args) {
-    User.callAddBook();
-    User.callSeeAllBooks();
-    User.callAllAutors();
-    User.callDelete();
+    User.exit();
+
     }
 }
