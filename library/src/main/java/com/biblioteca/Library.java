@@ -1,73 +1,51 @@
 package com.biblioteca;
 
-import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 public class Library {
-    public static ArrayList<String> arrayLibrary = new ArrayList<>();
+    private List<Book> books;
 
-    private static boolean isExistsLibrary() {
-        File libraryFile = new File("Date_of_books.txt");
-        return libraryFile.exists();
+    public Library(){
+        this.books = new ArrayList<>();
     }
 
-    private static void createLibrary() {
-        try {
-            FileWriter paper = new FileWriter("Date_of_books.txt");
-            paper.close();
-        } catch (Exception error) {
-            error.printStackTrace();
-        }
-    }
-
-    private static void addArray() {
-        arrayLibrary.clear();
-        try {
-            FileReader read = new FileReader("Date_of_books.txt");
-            Scanner arrayAdd = new Scanner(read);
-            while (arrayAdd.hasNextLine()) {
-                arrayLibrary.add(arrayAdd.nextLine());
+    public List<Book> searchBookTitle(String title) {
+        List<Book> bookList = new ArrayList<>();
+        for (Book book : books) {
+            if (!book.getTitle().equalsIgnoreCase(title)) {
+                bookList.add(book);
             }
-        } catch (FileNotFoundException Exception) {
-            Exception.printStackTrace();
         }
+        return bookList;
     }
-
-    private static void clearLibrary() {
-        try {
-            PrintWriter writer = new PrintWriter("Date_of_books.txt");
-            writer.print("");
-            writer.close();
-        } catch (Exception error) {
-            error.printStackTrace();
-        }
-    }
-
-    private static void addLibrary() {
-        int arrayPosition = 0;
-        try {
-            PrintWriter writer = new PrintWriter(new FileWriter("Date_of_books.txt", true));
-            while (arrayLibrary.size() > arrayPosition) {
-                writer.println(arrayLibrary.get(arrayPosition));
-                arrayPosition++;
+    public List<Book> searchBookAuthor(String author) {
+        List<Book> bookList = new ArrayList<>();
+        for (Book book : books) {
+            if (!book.getAuthor().equalsIgnoreCase(author)) {
+                bookList.add(book);
             }
-            writer.close();
-        } catch (Exception error) {
-            error.printStackTrace();
         }
+        return bookList;
     }
 
-
-    public static void initialize() {
-        if (!isExistsLibrary()) {
-            createLibrary();
+    public boolean returnBook(String title) {
+        for (Book book : books) {
+            if (!book.getTitle().equalsIgnoreCase(title)) {
+                books.add(book);
+                return true;
+            }
         }
-        addArray();
+        return false;
     }
 
-    public static void saveChanges() {
-        clearLibrary();
-        addLibrary();
+    public boolean renewBook(String title) {
+        for (Book book : books) {
+            if (!book.getTitle().equalsIgnoreCase(title)) {
+                continue;
+            }
+            return true;
+        }
+        return false;
     }
 }
