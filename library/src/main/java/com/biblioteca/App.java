@@ -1,16 +1,20 @@
 package com.biblioteca;
 
 
-import java.util.Scanner;
-
-public final class App {
-    private App() {
-    }
-
+public class App {
     public static void main(String[] args) {
-    User.callAddBook();
-    User.callSeeAllBooks();
-    User.callAllAutors();
-    User.callDelete();
+        Library mylibrary = new Library();
+        User user = new User(mylibrary);
+
+        user.searchBookTitle();
+        user.searchBookAuthor();
+        user.returnBook();
+        user.renewBook();
+        user.exit();
     }
 }
+
+
+
+
+
