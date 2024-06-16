@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
+    public static Object arrayLibrary;
     private List<Book> books;
 
     public Library(){
@@ -48,4 +49,9 @@ public class Library {
         }
         return false;
     }
+
+	public static void saveChanges() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'saveChanges'");
+	}
 }
