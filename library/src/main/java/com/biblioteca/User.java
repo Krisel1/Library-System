@@ -1,4 +1,6 @@
 package com.biblioteca;
+
+
 private static void rentBook() {
     System.out.println("What do you want to rent");
     if (Main.scanner.hasNextInt()) {

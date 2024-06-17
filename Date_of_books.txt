@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+Autor
+Cien a¤os de soledad
+Gabriel Garc¡a M rquez
+La Edad de Oro
+Jos‚ Mart¡
+disponible
+exit
+jon
+disponible
+La edad de Oro
+Jose Marti
+disponible
+La edad de oro
+Jose marti
+disponible
+El Padrino
+Mario Puzo
+disponible
+=======
 Libro1
 1
 2
@@ -10,3 +30,4 @@ Libro1
 8
 9
 10
+>>>>>>> dev
