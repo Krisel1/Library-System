@@ -1,7 +1,5 @@
 package com.biblioteca;
 
-import java.util.Scanner;
-
 public class Admin {
     private static void addBook() {
         System.out.println("Write name of book");

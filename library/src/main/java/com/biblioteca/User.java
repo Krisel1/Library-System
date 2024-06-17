@@ -70,3 +70,7 @@ public class User {
             }
         } while (!input.equals("5"));
     }
+    public static void to_control_user() {
+        toControlUser();
+    }
+}
