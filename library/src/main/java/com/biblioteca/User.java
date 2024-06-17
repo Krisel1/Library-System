@@ -1,65 +1,71 @@
 package com.biblioteca;
 
-import java.util.Scanner;
-import java.util.List;
-
-public class User {
-    private Library mylibrary;
-    private Scanner entrance;
-
-    public User(Library mylibrary) {
-        this.entrance = new Scanner(System.in);
-        this.mylibrary = mylibrary;
-    }
-
-    public void searchBookTitle() {
-        System.out.print("Enter the title of the book: ");
-        String title = entrance.nextLine();
-        List<Book> bookList = mylibrary.searchBookTitle(title);
-        if (bookList.isEmpty()) {
-            System.out.println("The book does not exist.");
+private static void rentBook() {
+    System.out.println("What do you want to rent");
+    if (Main.scanner.hasNextInt()) {
+        int inputInt = Main.scanner.nextInt() - 1;
+        Book book = Main.bookArrayList.get(inputInt);
+        if (book.isAvailable()) {
+            System.out.println("You rented a book");
+            book.setAvailable(false);
         } else {
-            for (Book book : bookList) {
-                System.out.println(book);
-            }
+            System.out.println("You can't rent a book");
         }
     }
+}
 
-    public void searchBookAuthor() {
-        System.out.print("Enter the author of the book: ");
-        String author = entrance.nextLine();
-        List<Book> booksfound = mylibrary.searchBookAuthor(author);
-        if (booksfound.isEmpty()) {
-            System.out.println("The book does not exist.");
+private static void returnBook() {
+    System.out.println("What do you want to return");
+    if (Main.scanner.hasNextInt()) {
+        int inputInt = Main.scanner.nextInt() - 1;
+        Book book = Main.bookArrayList.get(inputInt);
+        if (book.isAvailable()) {
+            System.out.println("You can't return a book");
         } else {
-            for (Book book : booksfound) {
-                System.out.println(book);
-            }
+            System.out.println("You returned a book");
+            book.setAvailable(true);
         }
     }
+}
 
-    public void returnBook() {
-        System.out.println("Enter the title of the book to be returned: ");
-        String title = entrance.nextLine();
-        if (mylibrary.returnBook(title)) {
-            System.out.println("Book Successfully Returned");
-        } else {
-            System.out.println("The book could not be returned");
+private static void searchBook() {
+    System.out.println("Write what do you want to search");
+    String input = Main.scanner.nextLine();
+    for (int i = 0; i < Main.bookArrayList.size(); i++) {
+        Book book = Main.bookArrayList.get(i);
+        if (book.getAuthor().equals(input) || book.getTitle().equals(input)) {
+            System.out.println(book.getTitle() + " " + book.getAuthor() + " " + book.getYear());
         }
     }
+}
 
-    public void renewBook() {
-        System.out.println("Enter the title of the book to be renewed: ");
-        String title = entrance.nextLine();
-        if (mylibrary.renewBook(title)) {
-            System.out.println("Successfully renovated book");
-        } else {
-            System.out.println("The book could not be renewed");
+private static void toControlUser() {
+    String input;
+    do {
+        System.out.println("What do you want to do: 1.Rent a book 2.Return a book 3.Search a book 4.See all books 5.Exit");
+        input = Main.scanner.nextLine();
+        switch (input) {
+            case "1":
+                rentBook();
+                break;
+            case "2":
+                returnBook();
+                break;
+            case "3":
+                searchBook();
+                break;
+            case "4":
+                Admin.show_All_Books();
+                break;
+            case "5":
+                System.out.println("You left the user");
+                break;
+            default:
+                System.out.println("You made a mistake");
+                break;
         }
-    }
-
-    public void exit() {
-        System.out.println("Exit the system. ¡See you later!");
-        entrance.close();
-    }
+    } while (!input.equals("5"));
+}
+public static void to_control_user() {
+    toControlUser();
 }
